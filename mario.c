@@ -10,7 +10,7 @@ int main(void)
     {
         x = get_int("How big a pyramid do you want?");
     }
-    while(x <= 0 || x > 8);
+    while (x <= 0 || x > 8);
 
     pyramidPrint(x);
 
@@ -19,15 +19,15 @@ int main(void)
 void pyramidPrint(int n)
 {
     //this first loop controls the height
-    for(int i = 1; i <= n; i++)
+    for (int i = 1; i <= n; i++)
     {
         //this loop controls blank spacing
-        for(int j = (n-i); j > 0; j--)
+        for (int j = (n - i); j > 0; j--)
         {
             printf(" ");
         }
         //this loop controls # spacing
-        for(int k = i; k > 0; k--)
+        for (int k = i; k > 0; k--)
         {
             printf("#");
         }
