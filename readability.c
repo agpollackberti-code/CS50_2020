@@ -25,7 +25,7 @@ int main(void)
         printf("Before Grade 1\n");
     }
 
-    if (index > 1 && index < = 16)
+    if (index > 1 && index <= 16)
     {
         printf("Grade %i\n", index);
     }
