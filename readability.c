@@ -4,10 +4,35 @@
 #include <ctype.h>
 #include <math.h>
 
+int evaluation(string input);
+
 int main(void)
 {
     //get user input in string format with get_string
     string s = get_string("Text: ");
+
+    int index = evaluation(s);
+
+    //shape output
+
+    if(index > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    if(index < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    if(index > 1 && index <=16)
+    {
+        printf("Grade %i\n", index);
+    }
+
+}
+
+int evaluation(string input)
+{
+    string s = input;
     int Len = strlen(s);
 
     //ANALYSIS
@@ -35,27 +60,12 @@ int main(void)
     }
 
     //feed variables into the Coleman-Liau index calculation, return X
+
     //L = average number of letters per 100 words
     float L = ((letters/words)*100);
     //S = average number of sentences per 100 words
     float S = ((sentences/words)*100);
     //index = 0.0588 * L - 0.296 * S - 15.8
     int index = round(0.0588 * L - 0.296 * S - 15.8);
-
-
-    //shape output
-
-    if(index > 16)
-    {
-        printf("Grade 16+\n");
-    }
-    if(index < 1)
-    {
-        printf("Before Grade 1\n");
-    }
-    if(index > 1 && index <=16)
-    {
-        printf("Grade %i\n", index);
-    }
-
+    return index;
 }
