@@ -64,13 +64,16 @@ int main(int argc, string argv[])
             //Is it upper?  then convert and toUpper.
             if(isupper(ciphertext[i]))
             {
-                ciphertext[i] = toupper(ciphertext[i] + cipher);
+                //if we exceed the range of 26 alphabet chars
+                //we need to know %26 when we exceed bounds, because we can use that remainder to "wrap" from a
+                //like if we end up
+                ciphertext[i] = toupper((ciphertext[i] + cipher) % 26);
             }
 
             //Is it lower? then convert and toLower.
             if(islower(ciphertext[i]))
             {
-                ciphertext[i] = tolower(ciphertext[i] + cipher);
+                ciphertext[i] = tolower((ciphertext[i] + cipher) % 26);
             }
 
         }
