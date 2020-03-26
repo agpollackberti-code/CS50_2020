@@ -10,11 +10,11 @@ int main(int argc, string argv[])
 
     //count command-line arguments
     int cipher;
-    if ( argc == 2 )
+    if (argc == 2)
     {
         int sl = strlen(argv[1]);
 
-        for(int i = 0; i < sl; i++)
+        for (int i = 0; i < sl; i++)
         {
             if (isalpha(argv[1][i]))
             {
@@ -25,8 +25,8 @@ int main(int argc, string argv[])
             //IF cla a positive decimal digit, populate cipher
             if (atoi(argv[1]) >= 0)
             {
-            cipher = atoi(argv[1]);
-            printf("cipher k value = %i\n", cipher);
+                cipher = atoi(argv[1]);
+                printf("cipher k value = %i\n", cipher);
             }
 
             //ELSE print "Usage: ./ceasar key" and return 1
@@ -62,7 +62,7 @@ int main(int argc, string argv[])
         {
 
             //Is it upper?  then convert and toUpper.
-            if(isupper(ciphertext[i]))
+            if (isupper(ciphertext[i]))
             {
                 //if we exceed the range of 26 alphabet chars
                 //we need to know %26 when we exceed bounds, because we can use that remainder to "wrap" from a
@@ -72,9 +72,9 @@ int main(int argc, string argv[])
             }
 
             //Is it lower? then convert and toLower.
-            if(islower(ciphertext[i]))
+            if (islower(ciphertext[i]))
             {
-                ciphertext[i] = tolower(((ciphertext[i] -'a' + cipher) % 26) + 'a');
+                ciphertext[i] = tolower(((ciphertext[i] - 'a' + cipher) % 26) + 'a');
             }
 
         }
