@@ -102,7 +102,7 @@ void print_winner(void)
     {
         if (candidates[l].votes == winningTotal)
         {
-            printf("%s \n", candidates[l].name);
+            printf("%s\n", candidates[l].name);
         }
     }
 
