@@ -70,7 +70,7 @@ bool vote(string name)
     //if names matches a candidate in array of candidates, then update their count & return true
     for (int j = 0; j < candidate_count; j++)
     {
-        if (strcmp(name,candidates[j].name) == 0)
+        if (strcmp(name, candidates[j].name) == 0)
         {
             candidates[j].votes++;
             return true;
@@ -97,7 +97,7 @@ void print_winner(void)
         }
     }
 
-    //select-sort for all candiates with the winning total
+    //print all candiates with the winning total
     for (int l = 0; l < candidate_count; l++)
     {
         if (candidates[l].votes == winningTotal)
