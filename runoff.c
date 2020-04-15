@@ -183,7 +183,7 @@ bool print_winner(void)
     {
         if (candidates[j].votes > majorityNeeded)
         {
-            printf("%s", candidates[j].name);
+            printf("%s\n", candidates[j].name);
             return true;
         }
     }
