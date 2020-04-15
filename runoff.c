@@ -1,6 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 // Max voters and candidates
 #define MAX_VOTERS 100
@@ -173,14 +174,10 @@ bool print_winner(void)
 {
     // TODO
     //determine total # of votes
-    int voteTotal = 0;
-    for (int i = 0; i < candidate_count; i++)
-    {
-        voteTotal += candidates[i].votes;
-    }
+    int voteTotal = voter_count;
 
     //determine total # of votes needed to win
-    int majorityNeeded = voteTotal / 2 ;
+    int majorityNeeded = (voteTotal / 2) + 1 ;
 
     for (int j = 0; j < candidate_count; j++)
     {
