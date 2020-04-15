@@ -154,15 +154,15 @@ void tabulate(void)
         //if we hit eliminated = true, we should increment up the second array + 1
         //once we find what we're looking for, we can increment up that candidate's votecount
 
-        int j = 0;
-        int canIndex = preferences[i][j];
-
-        while (candidates[canIndex].eliminated == true)
+        for(int j = 0; j < candidate_count; j++)
         {
-            j++;
+            int canIndex = preferences[i][j];
+            if(candidates[canIndex].eliminated == false)
+            {
+                candidates[canIndex].votes++;
+                break;
+            }
         }
-
-        candidates[canIndex].votes++;
 
     }
 
