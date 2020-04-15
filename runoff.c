@@ -148,16 +148,16 @@ bool vote(int voter, int rank, string name)
 void tabulate(void)
 {
     //iterating through the voters
-    for(int i = 0; i < voter_count; i++)
+    for (int i = 0; i < voter_count; i++)
     {
         //we need to iterate through each voter's choices, starting at 0, until we hit eliminated = false
         //if we hit eliminated = true, we should increment up the second array + 1
         //once we find what we're looking for, we can increment up that candidate's votecount
 
-        for(int j = 0; j < candidate_count; j++)
+        for (int j = 0; j < candidate_count; j++)
         {
             int canIndex = preferences[i][j];
-            if(candidates[canIndex].eliminated == false)
+            if (candidates[canIndex].eliminated == false)
             {
                 candidates[canIndex].votes++;
                 break;
@@ -214,7 +214,7 @@ bool is_tie(int min)
     // TODO
     for (int i = 0; i < candidate_count; i++)
     {
-        if((candidates[i].eliminated == false) && (candidates[i].votes > min))
+        if ((candidates[i].eliminated == false) && (candidates[i].votes > min))
         {
             return false;
         }
@@ -229,7 +229,7 @@ void eliminate(int min)
     // TODO
     for (int i = 0; i < candidate_count; i++)
     {
-        if(candidates[i].votes == min)
+        if (candidates[i].votes == min)
         {
             candidates[i].eliminated = true;
         }
