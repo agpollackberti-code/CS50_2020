@@ -177,11 +177,11 @@ bool print_winner(void)
     int voteTotal = voter_count;
 
     //determine total # of votes needed to win
-    int majorityNeeded = (voteTotal / 2) + 1 ;
+    float majorityNeeded = (voteTotal * 0.5) ;
 
     for (int j = 0; j < candidate_count; j++)
     {
-        if (candidates[j].votes >= majorityNeeded)
+        if (candidates[j].votes > majorityNeeded)
         {
             printf("%s", candidates[j].name);
             return true;
