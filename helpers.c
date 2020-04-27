@@ -148,7 +148,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                     totRed += image[i - 1][j+k].rgbtRed;
                 }
 
-                if (((i+1) >= 0) && (columnWindow >= 0) && (columnWindow < width))
+                if (((i+1) < height) && (columnWindow >= 0) && (columnWindow < width))
                 {
                     boxCount++;
                     totBlue += image[i + 1][j+k].rgbtBlue;
