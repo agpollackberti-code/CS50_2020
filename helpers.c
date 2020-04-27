@@ -176,6 +176,22 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
     }
 
+    //for each row by height
+    for (int i = 0; i < height; i++)
+    {
+        //for each pixel in the row by width
+        for (int j = 0; j < width; j++)
+        {
+
+            //set values to the average
+            image[i][j].rgbtBlue = image2[i][j].rgbtBlue;
+            image[i][j].rgbtGreen = image2[i][j].rgbtGreen;
+            image[i][j].rgbtRed = image2[i][j].rgbtRed;
+
+        }
+
+    }
+
 
 
     return;
