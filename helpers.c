@@ -122,9 +122,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             //set blur window
             float boxCount = 0.0;
 
-            int totBlue = 0;
-            int totGreen = 0;
-            int totRed = 0;
+            float totBlue = 0.0;
+            float totGreen = 0.0;
+            float totRed = 0.0;
 
             //slide our window across 3 columns
             for (int k = -1; k <= 1; k++)
