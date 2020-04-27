@@ -119,7 +119,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             //set blur window
-            int boxCount = 0;
+            float boxCount = 0.0;
 
             int totBlue = 0;
             int totGreen = 0;
