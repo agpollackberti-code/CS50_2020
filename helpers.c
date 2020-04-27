@@ -1,6 +1,7 @@
 #include "helpers.h"
 #include "math.h"
 #include "stdio.h"
+#include "stdlib.h"
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -110,7 +111,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
-
+    RGBTRIPLE(*image2)[width] = calloc(height, width * sizeof(RGBTRIPLE));
 
     //for each row by height
     for (int i = 0; i < height; i++)
@@ -167,9 +168,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             int avgRed = round(totRed/boxCount);
 
             //set center pixel to new value
-            image[i][j].rgbtBlue = avgBlue;
-            image[i][j].rgbtGreen = avgGreen;
-            image[i][j].rgbtRed = avgRed;
+            image2[i][j].rgbtBlue = avgBlue;
+            image2[i][j].rgbtGreen = avgGreen;
+            image2[i][j].rgbtRed = avgRed;
 
         }
 
