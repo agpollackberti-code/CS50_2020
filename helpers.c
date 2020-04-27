@@ -111,7 +111,7 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
 
-    RGBTRIPLE(*image2)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    RGBTRIPLE image2[height][width];
 
     //for each row by height
     for (int i = 0; i < height; i++)
