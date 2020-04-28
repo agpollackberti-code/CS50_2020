@@ -14,7 +14,7 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             //average the BGR values, to an int value
-            int avg = round((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed)/3.0);
+            int avg = round((image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3.0);
 
             //set values to the average
             image[i][j].rgbtBlue = avg;
@@ -39,7 +39,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
 
-           //grab original colors
+            //grab original colors
             int originalBlue = image[i][j].rgbtBlue;
             int originalGreen = image[i][j].rgbtGreen;
             int originalRed = image[i][j].rgbtRed;
@@ -49,9 +49,21 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             int newGreen = round(.349 * originalRed + .686 * originalGreen + .168 * originalBlue);
             int newRed = round(.393 * originalRed + .769 * originalGreen + .189 * originalBlue);
 
-            if(newBlue > 255){newBlue = 255;}
-            if(newGreen > 255){newGreen = 255;}
-            if(newRed > 255){newRed = 255;}
+            if (newBlue > 255)
+            {
+                newBlue = 255;
+
+            }
+            if (newGreen > 255)
+            {
+                newGreen = 255;
+
+            }
+            if (newRed > 255)
+            {
+                newRed = 255;
+
+            }
 
             image[i][j].rgbtBlue = newBlue;
             image[i][j].rgbtGreen = newGreen;
@@ -68,7 +80,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
 void reflect(int height, int width, RGBTRIPLE image[height][width])
 {
 
-        //for each row by height
+    //for each row by height
     for (int i = 0; i < height; i++)
     {
         //for each pixel in the row by width
@@ -135,37 +147,37 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                 if ((i >= 0) && (columnWindow >= 0) && (columnWindow < width))
                 {
                     boxCount++;
-                    totBlue += image[i][j+k].rgbtBlue;
-                    totGreen += image[i][j+k].rgbtGreen;
-                    totRed += image[i][j+k].rgbtRed;
+                    totBlue += image[i][j + k].rgbtBlue;
+                    totGreen += image[i][j + k].rgbtGreen;
+                    totRed += image[i][j + k].rgbtRed;
                 }
 
-                if (((i-1) >= 0) && (columnWindow >= 0) && (columnWindow < width))
+                if (((i - 1) >= 0) && (columnWindow >= 0) && (columnWindow < width))
                 {
                     boxCount++;
-                    totBlue += image[i - 1][j+k].rgbtBlue;
-                    totGreen += image[i - 1][j+k].rgbtGreen;
-                    totRed += image[i - 1][j+k].rgbtRed;
+                    totBlue += image[i - 1][j + k].rgbtBlue;
+                    totGreen += image[i - 1][j + k].rgbtGreen;
+                    totRed += image[i - 1][j + k].rgbtRed;
                 }
 
-                if (((i+1) < height) && (columnWindow >= 0) && (columnWindow < width))
+                if (((i + 1) < height) && (columnWindow >= 0) && (columnWindow < width))
                 {
                     boxCount++;
-                    totBlue += image[i + 1][j+k].rgbtBlue;
-                    totGreen += image[i + 1][j+k].rgbtGreen;
-                    totRed += image[i + 1][j+k].rgbtRed;
+                    totBlue += image[i + 1][j + k].rgbtBlue;
+                    totGreen += image[i + 1][j + k].rgbtGreen;
+                    totRed += image[i + 1][j + k].rgbtRed;
                 }
 
             }
 
             //Average Blue
-            int avgBlue = round(totBlue/boxCount);
+            int avgBlue = round(totBlue / boxCount);
 
             //Average Green
-            int avgGreen = round(totGreen/boxCount);
+            int avgGreen = round(totGreen / boxCount);
 
             //Average Red
-            int avgRed = round(totRed/boxCount);
+            int avgRed = round(totRed / boxCount);
 
             //set center pixel to new value
             image2[i][j].rgbtBlue = avgBlue;
