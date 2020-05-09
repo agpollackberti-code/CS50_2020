@@ -6,9 +6,18 @@
 int main(int argc, char *argv[])
 {
     //TODO: handling for argc <2
+    if (argc < 2)
+    {
+        printf("Please enter a filename");
+        return 1;
+
+    }
 
     FILE *f = fopen(argv[1], "r");
-    //TODO: handling file open = null
+    if (f==NULL)
+    {
+        return 1;
+    }
 
     //set initials
     int filecount = 0;
