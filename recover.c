@@ -30,7 +30,8 @@ int main(int argc, char *argv[])
 
         buffer = (unsigned char *)malloc(sizeof(unsigned char)*512);
 
-        int reading = fread(buffer, sizeof(unsigned char), 512, f);
+        while (fread(buffer, sizeof(unsigned char), 512, f) == 1)
+        {
 
         //if we're continuing a read in progress, keep going
         if (readinginprogress == true && !(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0))
@@ -88,6 +89,7 @@ int main(int argc, char *argv[])
 
         //in the end, free buffer and read next window of 512 bytes
         free(buffer);
+    }
 
     }
 
