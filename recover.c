@@ -58,6 +58,19 @@ int main(int argc, char *argv[])
             if(filecount > 1)
             {
 
+                //if we're continuing a read in progress, keep going
+                if (readinginprogress == true)
+                {
+                    //keep copying;
+                    char *filenameCont;
+                    filenameCont = (char *)malloc(sizeof(char)*8);
+                    sprintf(filenameCont, "%03i.jpg", (filecount-1));
+                    FILE *img = fopen(filenameCont, "a+");
+                    fwrite(buffer, sizeof(unsigned char), 512, img);
+                    fclose(img);
+                    free(filenameCont);
+                }
+
                 //start copying to new file until end of buffer
                 char *filenameNext;
                 filenameNext = (char *)malloc(sizeof(char)*8);
@@ -71,18 +84,6 @@ int main(int argc, char *argv[])
 
         }
 
-        //if we're continuing a read in progress, keep going
-        if (readinginprogress == true)
-        {
-            //keep copying;
-            char *filenameCont;
-            filenameCont = (char *)malloc(sizeof(char)*8);
-            sprintf(filenameCont, "%03i.jpg", (filecount-1));
-            FILE *img = fopen(filenameCont, "a+");
-            fwrite(buffer, sizeof(unsigned char), 512, img);
-            fclose(img);
-            free(filenameCont);
-        }
 
 
         //in the end, free buffer and read next window of 512 bytes
