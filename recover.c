@@ -32,12 +32,24 @@ int main(int argc, char *argv[])
 
         int reading = fread(buffer, sizeof(unsigned char), 512, f);
 
+        //if we're continuing a read in progress, keep going
+        if (readinginprogress == true && buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff && (buffer[3] & 0xf0) != 0xe0)
+        {
+            //keep copying;
+            char *filenameCont;
+            filenameCont = (char *)malloc(sizeof(char)*8);
+            sprintf(filenameCont, "%03i.jpg", (filecount-1));
+            FILE *img = fopen(filenameCont, "a");
+            fwrite(buffer, sizeof(unsigned char), 512, img);
+            fclose(img);
+            free(filenameCont);
+        }
 
         //look at the first 4 elements of the buffer for sign of a new JPEG
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             filecount++;
-            readinginprogress = true;
+
 
             //check filecount to see if this is the first file
             if (filecount == 1)
@@ -52,24 +64,13 @@ int main(int argc, char *argv[])
                 fwrite(buffer, sizeof(unsigned char), 512, img);
                 fclose(img);
                 free(filenameFirst);
+                readinginprogress = true;
 
             }
 
             if(filecount > 1)
             {
 
-                //if we're continuing a read in progress, keep going
-                if (readinginprogress == true)
-                {
-                    //keep copying;
-                    char *filenameCont;
-                    filenameCont = (char *)malloc(sizeof(char)*8);
-                    sprintf(filenameCont, "%03i.jpg", (filecount-1));
-                    FILE *img = fopen(filenameCont, "a+");
-                    fwrite(buffer, sizeof(unsigned char), 512, img);
-                    fclose(img);
-                    free(filenameCont);
-                }
 
                 //start copying to new file until end of buffer
                 char *filenameNext;
@@ -79,10 +80,14 @@ int main(int argc, char *argv[])
                 fwrite(buffer, sizeof(unsigned char), 512, img);
                 fclose(img);
                 free(filenameNext);
+                readinginprogress = true;
 
             }
 
         }
+
+
+
 
 
 
