@@ -91,6 +91,4 @@ int main(int argc, char *argv[])
 
     }
 
-    printf("total found: %i", filecount);
-
 }
