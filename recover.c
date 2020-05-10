@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
         int reading = fread(buffer, sizeof(unsigned char), 512, f);
 
         //if we're continuing a read in progress, keep going
-        if (readinginprogress == true && buffer[0] != 0xff && buffer[1] != 0xd8 && buffer[2] != 0xff && (buffer[3] & 0xf0) != 0xe0)
+        if (readinginprogress == true && !(buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0))
         {
             //keep copying;
             char *filenameCont;
             filenameCont = (char *)malloc(sizeof(char)*8);
             sprintf(filenameCont, "%03i.jpg", (filecount-1));
-            FILE *img = fopen(filenameCont, "a");
+            FILE *img = fopen(filenameCont, "a+");
             fwrite(buffer, sizeof(unsigned char), 512, img);
             fclose(img);
             free(filenameCont);
@@ -85,11 +85,6 @@ int main(int argc, char *argv[])
             }
 
         }
-
-
-
-
-
 
         //in the end, free buffer and read next window of 512 bytes
         free(buffer);
