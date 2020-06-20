@@ -99,7 +99,7 @@ bool load(const char *dictionary)
     while (fscanf(fp, "%s", readbuffer) == 1)
     {
         //fscanf(fp, "%s", readbuffer);
-        printf("%s \n", readbuffer);
+        //printf("%s \n", readbuffer);
 
         //Store
         node *n = (node *)malloc(sizeof(node));
