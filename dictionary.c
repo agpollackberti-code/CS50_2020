@@ -96,10 +96,10 @@ bool load(const char *dictionary)
 
     //fscanf(file, "%s", word)
 
-    while (!feof(fp))
+    while (fscanf(fp, "%s", readbuffer) == 1)
     {
-        fscanf(fp, "%s", readbuffer);
-        //printf("%s \n", readbuffer);
+        //fscanf(fp, "%s", readbuffer);
+        printf("%s \n", readbuffer);
 
         //Store
         node *n = (node *)malloc(sizeof(node));
@@ -109,7 +109,6 @@ bool load(const char *dictionary)
         }
 
         //strcpy to copy word into the node
-        //FIX THIS PLZ
         strcpy(n->word, readbuffer);
 
         //pass to hash function to get index of list to place this string into
@@ -122,6 +121,7 @@ bool load(const char *dictionary)
 
     }
     //free the buffers
+    free(readbuffer);
 
     return true;
 }
