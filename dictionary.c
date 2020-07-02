@@ -64,7 +64,7 @@ unsigned int hash(const char *word)
     const int wordsize = strlen(word);
 
     char *temp;
-    temp = (char *)malloc(sizeof(char)*wordsize+1);
+    temp = (char *)malloc(sizeof(char)*wordsize);
 
     for (int j = 0; j < wordsize; j++)
     {
@@ -146,7 +146,7 @@ unsigned int size(void)
 bool unload(void)
 {
     //traverse the hash table
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < N+20; i++)
     {
         node *tmp = table[i];
         node *cursor = table[i];
