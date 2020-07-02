@@ -61,10 +61,12 @@ unsigned int hash(const char *word)
 
     //need to convert the case to lower here
 
+    const int wordsize = strlen(word);
+
     char *temp;
-    temp = (char *)malloc(sizeof(char) * 24);
-    int j;
-    for (j = 0; j < 24; j++)
+    temp = (char *)malloc(sizeof(char)*wordsize);
+
+    for (int j = 0; j < wordsize; j++)
     {
         temp[j] = tolower(word[j]);
     }
@@ -73,7 +75,7 @@ unsigned int hash(const char *word)
     unsigned h = 0;
     int i;
 
-    for (i = 0; i < 2; i++)
+    for (i = 0; i < wordsize; i++)
     {
         h += p[i];
         h += (h << 10);
