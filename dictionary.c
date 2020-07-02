@@ -167,7 +167,6 @@ bool unload(void)
         }
 
     }
-    free(table);
 
     return true;
 }
