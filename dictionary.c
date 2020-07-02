@@ -166,7 +166,6 @@ bool unload(void)
 
         }
         free(tmp);
-        free(cursor);
 
     }
 
