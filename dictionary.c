@@ -33,14 +33,14 @@ bool check(const char *word)
         unsigned int index = hash(word);
 
         //traverse list with (strcasecmp)
-
         //cursor = start of the list
         node *cursor = table[index];
 
         while (cursor != NULL)
         {
+        int test = strcasecmp(word,cursor->word);
         //is the word at this node a match?
-            if (strcasecmp(word,cursor->word))
+            if (test == 0)
             {
                 return true;
             }
@@ -62,8 +62,8 @@ unsigned int hash(const char *word)
     //need to convert the case to lower here
 
     char *temp;
-    temp = (char *)malloc(sizeof(char) * 46);
-    for (int j = 0; j < 46; j++)
+    temp = (char *)malloc(sizeof(char) * 24);
+    for (int j = 0; j < 24; j++)
     {
         temp[j] = tolower(word[j]);
     }
@@ -83,8 +83,9 @@ unsigned int hash(const char *word)
     h ^= (h >> 11);
     h += (h << 15);
 
+    int hashvalue = h % N;
     free(temp);
-    return h % N;
+    return hashvalue;
 }
 
 // Loads dictionary into memory, returning true if successful else false
