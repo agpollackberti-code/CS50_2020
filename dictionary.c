@@ -117,7 +117,8 @@ bool load(const char *dictionary)
         //printf("%s \n", readbuffer);
 
         //Store
-        node *n = (node *)malloc(sizeof(node));
+        node *n;
+        n = (node *)malloc(sizeof(node));
         if (n == NULL)
         {
             return false;
