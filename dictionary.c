@@ -136,6 +136,7 @@ bool load(const char *dictionary)
     }
     //free the buffers
     free(readbuffer);
+    free(fp);
 
     return true;
 }
