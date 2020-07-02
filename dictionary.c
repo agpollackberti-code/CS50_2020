@@ -107,7 +107,7 @@ bool load(const char *dictionary)
     //READ STRINGS
     //create buffer and allocate memory to it
     char *readbuffer;
-    readbuffer = (char *)malloc(sizeof(char) * 47);
+    readbuffer = (char *)malloc(sizeof(char) * 46);
 
     while (fscanf(fp, "%s", readbuffer) == 1)
     {
@@ -146,7 +146,7 @@ unsigned int size(void)
 bool unload(void)
 {
     //traverse the hash table
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < N + 1; i++)
     {
         node *tmp = table[i];
         node *cursor = table[i];
