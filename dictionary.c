@@ -63,7 +63,8 @@ unsigned int hash(const char *word)
 
     char *temp;
     temp = (char *)malloc(sizeof(char) * 24);
-    for (int j = 0; j < 24; j++)
+    int j;
+    for (j = 0; j < 24; j++)
     {
         temp[j] = tolower(word[j]);
     }
