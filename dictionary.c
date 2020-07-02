@@ -132,6 +132,7 @@ bool load(const char *dictionary)
     }
     //free the buffers
     free(readbuffer);
+    fclose(fp);
 
     return true;
 }
@@ -146,7 +147,7 @@ unsigned int size(void)
 bool unload(void)
 {
     //traverse the hash table
-    for (int i = 0; i < N+20; i++)
+    for (int i = 0; i < N; i++)
     {
         node *tmp = table[i];
         node *cursor = table[i];
