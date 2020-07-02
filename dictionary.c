@@ -17,7 +17,7 @@ typedef struct node
 node;
 
 // Number of buckets in hash table
-const unsigned int N = 26*26;
+const unsigned int N = 26 * 26;
 
 // Hash table
 node *table[N];
@@ -29,26 +29,25 @@ int wordcount = 0;
 bool check(const char *word)
 {
 
-        //send word to hash function to get index
-        unsigned int index = hash(word);
+    //send word to hash function to get index
+    unsigned int index = hash(word);
 
-        //traverse list with (strcasecmp)
-        //cursor = start of the list
-        node *cursor = table[index];
+    //traverse list with (strcasecmp)
+    //cursor = start of the list
+    node *cursor = table[index];
 
-        while (cursor != NULL)
-        {
-        int test = strcasecmp(word,cursor->word);
+    while (cursor != NULL)
+    {
+        int test = strcasecmp(word, cursor->word);
         //is the word at this node a match?
-            if (test == 0)
-            {
-                return true;
-            }
-
+        if (test == 0)
+        {
+            return true;
+        }
             cursor = cursor->next;
         }
 
-        return false;
+    return false;
 
 }
 
@@ -64,7 +63,7 @@ unsigned int hash(const char *word)
     const int wordsize = strlen(word);
 
     char *temp;
-    temp = (char *)malloc(sizeof(char)*wordsize);
+    temp = (char *)malloc(sizeof(char) * wordsize);
 
     for (int j = 0; j < wordsize; j++)
     {
