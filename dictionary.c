@@ -1,0 +1,162 @@
+// Implements a dictionary's functionality
+
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
+#include "dictionary.h"
+
+// Represents a node in a hash table
+typedef struct node
+{
+    char word[LENGTH + 1];
+    struct node *next;
+}
+node;
+
+// Number of buckets in hash table
+const unsigned int N = 26*26;
+
+// Hash table
+node *table[N];
+
+//Loaded Word Count
+int wordcount = 0;
+
+// Returns true if word is in dictionary else false
+bool check(const char *word)
+{
+
+        //send word to hash function to get index
+        unsigned int index = hash(word);
+
+        //traverse list with (strcasecmp)
+
+        //cursor = start of the list
+        node *cursor = table[index];
+
+        while (cursor != NULL)
+        {
+        //is the word at this node a match?
+            if (strcasecmp(word,cursor->word))
+            {
+                return true;
+            }
+
+            cursor = cursor->next;
+        }
+
+        return false;
+
+}
+
+// Hashes word to a number
+unsigned int hash(const char *word)
+{
+    //printf("%s\n", word);
+    //https://www.strchr.com/hash_functions
+    //https://eternallyconfuzzled.com/hashing-c-introduction-to-hashing
+
+    const char *p = word;
+    unsigned h = 0;
+    int i;
+
+    for (i = 0; i < 2; i++)
+    {
+        h += p[i];
+        h += (h << 10);
+        h ^= (h >> 6);
+    }
+
+    h += (h << 3);
+    h ^= (h >> 11);
+    h += (h << 15);
+
+    return h % N;
+}
+
+// Loads dictionary into memory, returning true if successful else false
+bool load(const char *dictionary)
+{
+    // TODO
+    FILE *fp;
+
+    //OPEN the dictionary file    FILE * fp;
+    fp = fopen(dictionary, "r");
+    if (fp == NULL)
+    {
+        return false;
+    }
+
+    //READ STRINGS
+    //create buffer and allocate memory to it
+    char *readbuffer;
+    readbuffer = (char *)malloc(sizeof(char) * 46);
+
+    //fscanf(file, "%s", word)
+
+    while (fscanf(fp, "%s", readbuffer) == 1)
+    {
+        //fscanf(fp, "%s", readbuffer);
+        //printf("%s \n", readbuffer);
+
+        //Store
+        node *n = (node *)malloc(sizeof(node));
+        if (n == NULL)
+        {
+            return false;
+        }
+
+        //strcpy to copy word into the node
+        strcpy(n->word, readbuffer);
+
+        //pass to hash function to get index of list to place this string into
+        unsigned int index = hash(n->word);
+
+        //insert node into linked list at index, pointing to wherever the top was pointing to, then point top to this node
+        n->next = table[index];
+        table[index] = n;
+        wordcount++;
+
+    }
+    //free the buffers
+    free(readbuffer);
+
+    return true;
+}
+
+// Returns number of words in dictionary if loaded else 0 if not yet loaded
+unsigned int size(void)
+{
+    return wordcount;
+}
+
+// Unloads dictionary from memory, returning true if successful else false
+bool unload(void)
+{
+    //traverse the hash table
+    for (int i = 0; i < N; i++)
+    {
+        node *tmp = table[i];
+        node *cursor = table[i];
+
+        bool end = false;
+        while (end != false)
+        {
+            cursor = cursor->next;
+            free(tmp);
+            tmp = cursor;
+
+            if (cursor->next == NULL)
+            {
+                end = true;
+            }
+
+        }
+
+    }
+
+    return true;
+}
+
