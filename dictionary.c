@@ -109,12 +109,8 @@ bool load(const char *dictionary)
     char *readbuffer;
     readbuffer = (char *)malloc(sizeof(char) * 46);
 
-    //fscanf(file, "%s", word)
-
-    while (fscanf(fp, "%s", readbuffer) == 1)
+    while (fscanf(fp, "%s", readbuffer) >= 0)
     {
-        //fscanf(fp, "%s", readbuffer);
-        //printf("%s \n", readbuffer);
 
         //Store
         node *n = (node *)malloc(sizeof(node));
