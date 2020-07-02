@@ -133,9 +133,6 @@ bool load(const char *dictionary)
         n->next = table[index];
         table[index] = n;
         wordcount++;
-
-        free(n);
-
     }
     //free the buffers
     free(readbuffer);
