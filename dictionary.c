@@ -64,7 +64,7 @@ unsigned int hash(const char *word)
     const int wordsize = strlen(word);
 
     char *temp;
-    temp = (char *)malloc(sizeof(char)*wordsize);
+    temp = (char *)malloc(sizeof(char)*wordsize+1);
 
     for (int j = 0; j < wordsize; j++)
     {
