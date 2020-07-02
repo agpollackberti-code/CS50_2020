@@ -117,8 +117,7 @@ bool load(const char *dictionary)
         //printf("%s \n", readbuffer);
 
         //Store
-        node *n;
-        n = (node *)malloc(sizeof(node));
+        node *n = (node *)malloc(sizeof(node));
         if (n == NULL)
         {
             return false;
@@ -134,6 +133,8 @@ bool load(const char *dictionary)
         n->next = table[index];
         table[index] = n;
         wordcount++;
+
+        free(n);
 
     }
     //free the buffers
