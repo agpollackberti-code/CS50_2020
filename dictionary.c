@@ -147,7 +147,7 @@ unsigned int size(void)
 bool unload(void)
 {
     //traverse the hash table
-    for (int i = 0; i < N; i++)
+    for (int i = root; i < N; i++)
     {
         node *tmp = table[i];
         node *cursor = table[i];
