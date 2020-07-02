@@ -107,7 +107,7 @@ bool load(const char *dictionary)
     //READ STRINGS
     //create buffer and allocate memory to it
     char *readbuffer;
-    readbuffer = (char *)malloc(sizeof(char) * 46);
+    readbuffer = (char *)malloc(sizeof(char) * 47);
 
     while (fscanf(fp, "%s", readbuffer) == 1)
     {
