@@ -1,5 +1,6 @@
 // Implements a dictionary's functionality
 
+#include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,7 +59,16 @@ unsigned int hash(const char *word)
     //https://www.strchr.com/hash_functions
     //https://eternallyconfuzzled.com/hashing-c-introduction-to-hashing
 
-    const char *p = word;
+    //need to convert the case to lower here
+
+    char *temp;
+    temp = (char *)malloc(sizeof(char) * 46);
+    for (int j = 0; j < 46; j++)
+    {
+        temp[j] = tolower(word[j]);
+    }
+
+    const char *p = temp;
     unsigned h = 0;
     int i;
 
@@ -73,6 +83,7 @@ unsigned int hash(const char *word)
     h ^= (h >> 11);
     h += (h << 15);
 
+    free(temp);
     return h % N;
 }
 
